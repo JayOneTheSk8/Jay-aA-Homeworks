@@ -10,7 +10,11 @@ class Simon
   end
 
   def play
-
+    until self.game_over
+      take_turn
+    end
+    game_over_message
+    reset_game
   end
 
   def take_turn
@@ -50,14 +54,14 @@ class Simon
   end
 
   def round_success_message
-    "Great job!"
+    puts "Great job!"
   end
 
   def game_over_message
-
+    puts "Sorry! You Lose :("
   end
 
   def reset_game
-
+    initialize
   end
 end
