@@ -1,3 +1,4 @@
+require 'byebug'
 class Simon
   COLORS = %w(red blue green yellow)
 
@@ -10,6 +11,7 @@ class Simon
   end
 
   def play
+    system('clear')
     until self.game_over
       take_turn
     end
@@ -24,6 +26,7 @@ class Simon
       round_success_message
       self.sequence_length += 1
     end
+    system('clear')
   end
 
   def show_sequence
@@ -55,6 +58,7 @@ class Simon
 
   def round_success_message
     puts "Great job!"
+    sleep(1.5)
   end
 
   def game_over_message
@@ -62,6 +66,17 @@ class Simon
   end
 
   def reset_game
-    initialize
+    initialize if self.game_over
+    puts "Would you like to play again? (Y/N)"
+    input = gets.chomp.downcase
+    unless input == "y" || input == "n"
+      puts "\'Y\' or \'N\' please!"
+      reset_game
+    end
+    if input == "y"
+      play
+    elsif input == "n"
+      "Exiting Game..."
+    end
   end
 end
