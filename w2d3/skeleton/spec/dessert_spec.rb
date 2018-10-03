@@ -38,10 +38,10 @@ describe Dessert do
 
   describe "#mix!" do
     it "shuffles the ingredient array" do
-      ingredients = ['flour', 'eggs', 'milk']
+      ingredients = ['flour', 'eggs', 'milk', 'sugar']
       ingredients.each { |ingredient| cake.add_ingredient(ingredient) }
       cake.mix!
-
+      expect(cake.ingredients).to contain_exactly('flour', 'eggs', 'milk', 'sugar')
       expect(cake.ingredients).to_not eq(ingredients)
     end
   end
@@ -58,10 +58,16 @@ describe Dessert do
   end
 
   describe "#serve" do
-    it "contains the titleized version of the chef's name"
+    it "contains the titleized version of the chef's name" do
+      allow(chef).to receive(:titleize).and_return("Caesar")
+      expect(cake.serve).to include ('Caesar')
+    end
   end
 
   describe "#make_more" do
-    it "calls bake on the dessert's chef with the dessert passed in"
+    it "calls bake on the dessert's chef with the dessert passed in" do
+      expect(chef).to receive(:bake).with(cake)
+      cake.make_more
+    end
   end
 end
