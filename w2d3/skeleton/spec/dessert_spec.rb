@@ -38,18 +38,23 @@ describe Dessert do
 
   describe "#mix!" do
     it "shuffles the ingredient array" do
-      cake.add_ingredient('flour')
-      cake.add_ingredient('eggs')
+      ingredients = ['flour', 'eggs', 'milk']
+      ingredients.each { |ingredient| cake.add_ingredient(ingredient) }
       cake.mix!
-      expect(cake.ingredients).to eq(['eggs', 'flour'])
+
+      expect(cake.ingredients).to_not eq(ingredients)
     end
   end
 
   describe "#eat" do
     it "subtracts an amount from the quantity" do
+      cake.eat(1)
+      expect(cake.quantity).to eq(0)
     end
 
-    it "raises an error if the amount is greater than the quantity"
+    it "raises an error if the amount is greater than the quantity" do
+      expect {cake.eat(2)}.to raise_error("not enough left!")
+    end
   end
 
   describe "#serve" do
