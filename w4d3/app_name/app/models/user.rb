@@ -41,6 +41,7 @@ class User < ApplicationRecord
 
   def password=(new_password)
     @password = new_password
+    # must use create because we want to render a string. Not a BCrpyt object.
     self.password_digest = BCrypt::Password.create(new_password)
   end
 end
