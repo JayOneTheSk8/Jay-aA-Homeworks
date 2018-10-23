@@ -5,6 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Corgi.destroy_all
+Cat.destroy_all
+Toy.destroy_all
+
 10.times do
   Corgi.create(name: Faker::Name.first_name)
   Cat.create(name: Faker::Name.first_name)
