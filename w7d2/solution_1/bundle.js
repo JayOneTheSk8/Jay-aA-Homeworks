@@ -1202,10 +1202,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // Phase 1
+// function addLoggingToDispatch(store) {
+//   const storeDispatch = store.dispatch
+//   return (action) => {
+//     console.log("Old State:", store.getState());
+//     console.log(action);
+//     storeDispatch(action);
+//     console.log("New State:", store.getState());
+//   }
+// }
+// Phase 2
+// const addLoggingToDispatch = store => next => action => {
+//   const dispatch = store.dispatch;
+//   next.forEach(middleware => )
+// }
 
 document.addEventListener('DOMContentLoaded', function () {
   var preloadedState = localStorage.state ? JSON.parse(localStorage.state) : {};
-  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState);
+  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState); // Phase 1
+  // store.dispatch = addLoggingToDispatch(store);
+
   var root = document.getElementById('content');
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
